@@ -8,6 +8,7 @@ const propertyCore = {
   lat: z.number(),
   long: z.number(),
   price: z.number(),
+  size: z.number(),
   type: z.string(),
   beds: z.number(),
   baths: z.number(),

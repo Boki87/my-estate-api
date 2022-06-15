@@ -11,40 +11,38 @@ datasource db {
 }
 
 model Image {
-    id            String      @id @default(auto()) @map("_id") @db.ObjectId
-    url           String
-    type          String
-    order_id      Int
-    property      Property    @relation(fields: [property_id], references: [id])
-    property_id   String      @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  url         String
+  type        String
+  order_id    Int
+  property    Property @relation(fields: [property_id], references: [id])
+  property_id String   @db.ObjectId
 }
 
-
-
 model Property {
-    id            String @id  @default(auto()) @map("_id") @db.ObjectId
-    country       String
-    address       String
-    lat           Float
-    long          Float
-    price         Int
-    type          String
-    beds          Int
-    baths         Int
-    description   String?
-    images        Image[]
-    user          User        @relation(fields: [user_id], references: [id])
-    user_id       String      @db.ObjectId 
-    createdAt     DateTime    @default(now())
-    updatedAt     DateTime    @updatedAt
-  }
-
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  country     String
+  address     String
+  lat         Float
+  long        Float
+  price       Int
+  size        Int
+  type        String
+  beds        Int
+  baths       Int
+  description String?
+  images      Image[]
+  user        User     @relation(fields: [user_id], references: [id])
+  user_id     String   @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
 
 model User {
-    id          String @id @default(auto()) @map("_id") @db.ObjectId
-    email       String @unique
-    name        String?
-    password    String
-    salt        String
-    property    Property[] 
-  }
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  email    String     @unique
+  name     String?
+  password String
+  salt     String
+  property Property[]
+}
